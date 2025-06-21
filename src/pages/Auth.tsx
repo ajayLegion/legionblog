@@ -1,12 +1,10 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { AuthForm } from "@/components/AuthForm";
 import { supabase } from "@/integrations/supabase/client";
 
 const Auth = () => {
-  const [mode, setMode] = useState<"login" | "signup">("login");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,18 +30,7 @@ const Auth = () => {
           <p className="text-muted-foreground mt-2">Admin Access</p>
         </div>
         
-        <AuthForm mode={mode} onSuccess={handleAuthSuccess} />
-        
-        <div className="text-center">
-          <Button
-            variant="ghost"
-            onClick={() => setMode(mode === "login" ? "signup" : "login")}
-          >
-            {mode === "login"
-              ? "Need an account? Sign up"
-              : "Already have an account? Login"}
-          </Button>
-        </div>
+        <AuthForm mode="login" onSuccess={handleAuthSuccess} />
       </div>
     </div>
   );
